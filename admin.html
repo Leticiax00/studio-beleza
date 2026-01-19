@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin | Bella Brows</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+        --primary: #e91e63;
+        --primary-dark: #c2185b;
+        --bg-light: #fffafb;
+        --text-dark: #333;
+        --border: #f0e0e5;
+        --radius: 12px;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Header */
+    .admin-header {
+        background: white;
+        padding: 1rem 5%;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .header-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-admin {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        color: var(--primary);
+        margin: 0;
+    }
+
+    .logo-admin span {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.7rem;
+        color: #888;
+        text-transform: uppercase;
+        display: block;
+        letter-spacing: 1px;
+    }
+
+    /* Navbar de Navegação */
+    .admin-nav {
+        background: white;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .nav-link {
+        background: none;
+        border: none;
+        padding: 15px 10px;
+        color: #777;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        transition: 0.3s;
+    }
+
+    .nav-link.active {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+    }
+
+    /* Conteúdo */
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px 40px;
+    }
+
+    .card {
+        background: #fff;
+        padding: 25px;
+        border-radius: var(--radius);
+        margin-bottom: 30px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        animation: fadeIn 0.4s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-header {
+        margin-bottom: 20px;
+        border-bottom: 2px solid var(--bg-light);
+        padding-bottom: 15px;
+    }
+
+    .card-header h3 {
+        font-family: 'Playfair Display', serif;
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    /* Formulários */
+    .admin-form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    input {
+        padding: 12px 15px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-family: 'Poppins', sans-serif;
+        background: #fdfbfc;
+    }
+
+    button {
+        cursor: pointer;
+        border-radius: 8px;
+        transition: 0.3s;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        background: var(--primary);
+        
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-dark);
+    }
+
+    .btn-logout {
+        background: transparent;
+        border: 1px solid #ddd;
+        color: #666;
+        padding: 8px 15px;
+    }
+
+    /* Tabelas */
+    .table-responsive { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; background: var(--bg-light); padding: 12px; color: var(--primary); font-size: 0.8rem; text-transform: uppercase; }
+    td { padding: 12px; border-bottom: 1px solid var(--bg-light); font-size: 0.9rem; }
+
+    .btn-cancel {
+        background: #fff0f3;
+        color: var(--primary);
+        border: 1px solid #ffdae3;
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+
+    .btn-cancel:hover { background: var(--primary); color: white; }
+
+    .prof-list {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    .prof-list li {
+        background: var(--bg-light);
+        padding: 10px 15px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        border-left: 4px solid var(--primary);
+    }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+    <header class="admin-header">
+        <div class="header-container">
+            <h1 class="logo-admin">BELLA BROWS <span>Painel Administrativo</span></h1>
+            <button class="btn-logout" onclick="logout()">Sair</button>
+        </div>
+    </header>
+
+    <nav class="admin-nav">
+        <div class="nav-container">
+            <button class="nav-link active" onclick="switchTab('tab-agendamentos', this)">Agendamentos</button>
+            <button class="nav-link" onclick="switchTab('tab-configuracoes', this)">Configurações</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <section id="tab-agendamentos" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Próximos Agendamentos</h3>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Serviço</th>
+                                <th>Data</th>
+                                <th>Hora</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaAgendamentos">
+                            <tr><td colspan="5">Carregando agendamentos...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-configuracoes" class="tab-content hidden">
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Gerenciar Serviços</h3>
+                </div>
+                <div class="admin-form-grid">
+                    <input id="serviceNome" placeholder="Nome">
+                    <input id="servicePreco" type="number" placeholder="Preço (R$)">
+                    <input id="serviceDuracao" type="number" placeholder="Duração (min)">
+                    <button class="btn-primary" onclick="addServico()">Adicionar</button>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Preço</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaServicos"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Equipe</h3>
+                </div>
+                <div class="admin-form-grid" style="grid-template-columns: 1fr auto;">
+                    <input id="profNome" placeholder="Nome do profissional">
+                    <button class="btn-primary" onclick="addProfissional()">Adicionar</button>
+                </div>
+                <ul class="prof-list" id="listaProfissionais"></ul>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        // Lógica de alternância de abas
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            btn.classList.add('active');
+        }
+    </script>
+
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>
