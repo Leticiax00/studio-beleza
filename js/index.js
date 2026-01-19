@@ -37,7 +37,6 @@ async function carregarServicos() {
 
 async function carregarProfissionais() {
 
-  // Adicione isso ao final do seu arquivo index.js
   professionalSelect.addEventListener('change', () => {
     if (selectedDate) {
       carregarHorariosIndisponiveis().then(() => {
@@ -177,11 +176,11 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// Inicialização única
 renderCalendar();
 carregarServicos();
 carregarProfissionais();
 
+// Máscara de telefone
 const phoneInput = document.getElementById("phone");
 
 if (phoneInput) {

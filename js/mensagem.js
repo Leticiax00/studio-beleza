@@ -1,11 +1,21 @@
 console.log("mensagem.js carregado");
 function enviarMensagem() {
-    
+
     const nome = document.querySelector(".contato-nome").value;
     const mensagem = document.querySelector(".contato-msg").value;
     
     if (nome === "" || mensagem === "") {
         alert("Por favor, preencha o seu nome e a mensagem.");
+        return;
+    }
+
+    else if (nome.length < 5) {
+        alert("Preencha o nome com pelo menos 5 caracteres.");
+        return;
+    }
+
+    else if (mensagem.length < 5) {
+        alert("Preencha a mensagem com pelo menos 5 caracteres.");
         return;
     }
 
